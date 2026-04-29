@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Theory | Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080808;
+            --accent-primary: #a78bfa;
+            --accent-secondary: #c4ff61;
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --glass: rgba(255, 255, 255, 0.03);
+            --easing: cubic-bezier(0.2, 0.0, 0, 1.0);
+        }
+
+        * {
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-secondary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+        }
+
+        .background-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(196, 255, 97, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 540px;
+            padding: 60px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transform: translateY(20px);
+            animation: reveal 1.2s var(--easing) forwards;
+        }
+
+        @keyframes reveal {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 40px 0;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .input-group input, 
+        .input-group select, 
+        .input-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 0;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            outline: none;
+            transition: border-color 0.4s var(--easing);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: all 0.4s var(--easing);
+            pointer-events: none;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label,
+        .input-group select:focus + label,
+        .input-group select:valid + label,
+        .input-group textarea:focus + label,
+        .input-group textarea:not(:placeholder-shown) + label {
+            top: -12px;
+            color: var(--accent-secondary);
+            font-size: 0.6rem;
+        }
+
+        .input-group .line-draw {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-secondary);
+            transition: width 0.6s var(--easing);
+        }
+
+        .input-group input:focus ~ .line-draw {
+            width: 100%;
+        }
+
+        .radio-section {
+            margin-bottom: 40px;
+        }
+
+        .radio-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-option {
+            flex: 1;
+        }
+
+        .radio-option input {
+            display: none;
+        }
+
+        .radio-label {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            font-size: 0.8rem;
+            transition: all 0.3s var(--easing);
+        }
+
+        .radio-option input:checked + .radio-label {
+            background: var(--text-main);
+            color: var(--bg-color);
+            border-color: var(--text-main);
+            transform: scale(1.05);
+        }
+
+        button {
+            width: 100%;
+            padding: 24px;
+            background: var(--accent-primary);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 100px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s var(--easing);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background: var(--accent-secondary);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #success-screen {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-color);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 28px;
+            z-index: 10;
+        }
+
+        .glitch-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: var(--accent-secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        select option {
+            background: #111;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+    <div class="background-mesh"></div>
+
+    <div class="container">
+        <h1>Entry<br>Portal_</h1>
+        
+        <form id="activeForm">
+            <div class="input-group">
+                <input type="text" id="name" placeholder=" " required>
+                <label>Full Name</label>
+                <div class="line-draw"></div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="sid" placeholder=" " required>
+                <label>Student ID</label>
+                <div class="line-draw"></div>
+            </div>
+
+            <div class="input-group">
+                <select id="category" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="Sports">Sports</option>
+                    <option value="Arts">Arts & Culture</option>
+                    <option value="Tech">Technology</option>
+                    <option value="Service">Community Service</option>
+                </select>
+                <label>Category</label>
+                <div class="line-draw"></div>
+            </div>
+
+            <div class="radio-section">
+                <span class="radio-title">Selection Tier</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="role" value="Member" checked>
+                        <span class="radio-label">Member</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="role" value="Lead">
+                        <span class="radio-label">Lead</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="role" value="Volunteer">
+                        <span class="radio-label">Volunteer</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <textarea id="reason" rows="2" placeholder=" " required></textarea>
+                <label>Statement of Purpose</label>
+                <div class="line-draw"></div>
+            </div>
+
+            <button type="submit" id="submitBtn">Transmit Data</button>
+        </form>
+
+        <div id="success-screen">
+            <div class="glitch-text">TRANSMITTED</div>
+            <p style="color: var(--text-dim); margin-top: 20px; font-size: 0.8rem; letter-spacing: 4px;">SYSTEM_SUCCESS_01</p>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('button, input, label, .radio-label, select').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(3)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+
+        document.getElementById('activeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = 'UPLOADING...';
+
+            const payload = {
+                user: document.getElementById('name').value,
+                id: document.getElementById('sid').value,
+                cat: document.getElementById('category').value,
+                role: document.querySelector('input[name="role"]:checked').value,
+                note: document.getElementById('reason').value
+            };
+
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: { 'Content-type': 'application/json' }
+            })
+            .then(res => {
+                if(res.ok) {
+                    document.getElementById('success-screen').style.display = 'flex';
+                }
+            })
+            .catch(() => {
+                btn.innerHTML = 'RETRY TRANSMISSION';
+            });
+        });
+    </script>
+</body>
+</html>
